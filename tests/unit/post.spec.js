@@ -1,13 +1,47 @@
-import { expect } from 'chai'
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import Vuex from "vuex";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
+import chai, { expect } from "chai";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
+import Post from "@/components/Post";
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).to.include(msg)
-  })
-})
+chai.use(sinonChai);
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
+
+describe("Post", () => {
+  let store;
+ 
+  const actions = {
+    DELETE_POST: () => null,
+    EDIT_POST: () => null
+  };
+  let component;
+  const mockMethod = sinon.spy();
+
+  beforeEach(() => {
+    store = new Vuex.Store({
+      actions
+    });
+    const posts = [{title: 'a', dec: 'a'}];
+    component = shallowMount(Post, {
+      store,
+      localVue,
+      propsData: {
+        posts: posts
+      },
+      mocks: {
+        $t: () => {}
+      }
+    });
+  });
+
+  describe("can edit post", () => {
+    it("clicking 'edit post'", () => {
+      component.setMethods({ editPost: mockMethod });
+      component.find(".post__btn--edit").trigger("click");
+      expect(mockMethod).to.have.been.called;
+    });
+  });
+});

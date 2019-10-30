@@ -1,13 +1,14 @@
 <template>
   <div>
-    <ul class="post" v-if="posts.length >=1">
+    <ul class="post"
+      v-if="posts.length >=1">
       <li 
       class="post__item"
       v-for="(item, i) in posts" 
       :key="i">
           <p>Title:{{ item.title }}</p>
            <p>Description:{{ item.desc }}</p>
-           <button  class="post__btn" @click="editPost(i)">Edit post</button>
+           <button  class="post__btn post__btn--edit" @click="editPost(i)">Edit post</button>
            <button class="post__btn" @click="deletePost(i)">Delete post</button>
           </li>
     </ul>
