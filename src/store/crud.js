@@ -1,9 +1,7 @@
 const crud = {
     namespaced: true,
     state: {
-        posts: [
-        
-        ],
+        posts: [],
         currentEdit: null,
     },
     mutations: {
@@ -17,15 +15,7 @@ const crud = {
             state.currentEdit = i;
         },
         updatePost(state,post) {
-            
-// Using the current edit index
-// Go into the posts 
-// And make the new updates 
-// with new object 
-
             state.posts[state.currentEdit] = post;
-
-
         }
     },
     actions: {

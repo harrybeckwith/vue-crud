@@ -39,4 +39,8 @@
 .main {
     margin-top: 2em;
 }
+
+* {
+    box-sizing: border-box;
+}
 </style>

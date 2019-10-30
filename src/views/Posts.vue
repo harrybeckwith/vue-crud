@@ -1,6 +1,6 @@
 <template>
   <div class="posts">
-   <p> Posts </p>
+   <p> {{posts.length}} Posts </p>
 
    <Post :posts="posts"/>
   </div>
