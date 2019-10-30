@@ -1,20 +1,42 @@
 <template>
   <div id="app">
-    {{getCount}}
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/create-post">Add post</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-import {mapGetters} from "vuex";
-
-export default {
-  name: 'app',
-computed: {
-    ...mapGetters("crud",["getCount"])
-}
-}
-</script>
-
 <style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+.container {
+    max-width: 42em;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+.main {
+    margin-top: 2em;
+}
 </style>
